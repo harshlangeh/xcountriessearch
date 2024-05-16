@@ -41,8 +41,9 @@ function App() {
   
   return (
 
-    <div>
+    <div className='countryCard'>
       <input
+      type='text'
       style={{
         height: '3vh', 
         width: '90vw', 
@@ -51,8 +52,8 @@ function App() {
       placeholder='Search'
       onChange={((e)=> setQuery(e.target.value))}
       />
-      <div>
-        {filteredData.map((item) => (
+      <div className='countryCard'>
+        {query && filteredData.map((item) => (
           <Tile 
           flagUrl={item.flags.png} 
           name={item.name.common} 
@@ -60,7 +61,9 @@ function App() {
           key={item.name.common}/>
         ))}
       </div>
-      <div style={{
+      <div 
+      className='countryCard'
+      style={{
       display: 'flex',
       height: '100vh',
       flexWrap: 'wrap',
