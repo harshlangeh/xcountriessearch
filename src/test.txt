@@ -3,17 +3,7 @@ import './App.css';
 
 const Tile = ({ flagUrl, name, altFlag }) => {
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      margin: '10px',
-      padding: '10px',
-      border: '1px solid black',
-      borderRadius: '8px',
-      width: '200px'
-    }}>
+    <div className="countryCard">
       <img src={flagUrl} alt={altFlag} style={{ width: '100px', height: '100px' }} />
       <h2>{name}</h2>
     </div>
@@ -45,20 +35,16 @@ function App() {
   );
 
   return (
-    <div className='countryCard'>
+    <div className='app'>
       <input
         type='text'
-        style={{
-          height: '3vh',
-          width: '90vw',
-          margin: '20px',
-        }}
+        className='searchBar'
         placeholder='Search'
         onChange={(e) => setQuery(e.target.value)}
       />
 
-      <div className='countryCard'>
-        {query ?
+      <div className='countryGrid'>
+        {filteredData.length > 0 ? 
           filteredData.map((item) => (
             <Tile
               flagUrl={item.flags.png}
@@ -67,14 +53,7 @@ function App() {
               key={item.name.common}
             />
           )) :
-          data.map((item) => (
-            <Tile
-              flagUrl={item.flags.png}
-              name={item.name.common}
-              altFlag={item.flags.alt}
-              key={item.name.common}
-            />
-          ))
+          <p>No countries found</p>
         }
       </div>
     </div>
@@ -82,5 +61,3 @@ function App() {
 }
 
 export default App;
-
-
