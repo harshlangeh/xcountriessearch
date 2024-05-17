@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import './App.css'
 
 
 
@@ -52,26 +53,44 @@ function App() {
       placeholder='Search'
       onChange={((e)=> setQuery(e.target.value))}
       />
-      <div className='countryCard'>
-        {query && filteredData.map((item) => (
+
+      {query ?  
+
+        <div className='countryCard'
+        style={{
+          // display: 'flex',
+          // height: '100vh',
+          // flexWrap: 'wrap',
+          // justifyContent: 'center',
+          // alignItems: 'center' 
+          }}>
+
+        {filteredData.map((item) => (
           <Tile 
           flagUrl={item.flags.png} 
           name={item.name.common} 
           altFlag={item.flags.alt} 
           key={item.name.common}/>
         ))}
-      </div>
-      <div 
-      className='countryCard'
-      style={{
-      display: 'flex',
-      height: '100vh',
-      flexWrap: 'wrap',
-      justifyContent: 'center',
-      alignItems: 'center' 
-      }}>
-      {data && data.map((item) => <Tile flagUrl={item.flags.png} name={item.name.common} altFlag={item.flags.alt} key={item.name.common}/>)}
-    </div>
+        </div> :
+
+            <div 
+            className='countryCard'
+            style={{
+            // display: 'flex',
+            // height: '100vh',
+            // flexWrap: 'wrap',
+            // justifyContent: 'center',
+            // alignItems: 'center' 
+            }}>
+            {data && data.map((item) => <Tile flagUrl={item.flags.png} name={item.name.common} altFlag={item.flags.alt} key={item.name.common}/>)}
+            </div>
+      
+      
+      }
+
+      
+      
     </div>
     
   );
